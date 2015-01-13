@@ -10,7 +10,25 @@ public class Car {
 
     @Override
     public String toString() {
-        return "color: " + this.color + ", maxSpeed: " + this.maxSpeed + ", number: " + this.number + ", type: " + this.type + ";";
+        return "color: " + color + ", maxSpeed: " + maxSpeed + ", number: " + number + ", type: " + type + ";";
+    }
+
+    @Override
+    public int hashCode() {
+        return number * 31 + color.hashCode() + type.hashCode() + maxSpeed;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj){
+            return true;
+        }
+        if(!(obj instanceof Car)){
+            return false;
+        }
+        Car objCar = (Car) obj;
+        return (color.equals(objCar.color) && type.equals(objCar.type)
+                && maxSpeed == objCar.maxSpeed);
     }
 
     public static class CarBuilder {
